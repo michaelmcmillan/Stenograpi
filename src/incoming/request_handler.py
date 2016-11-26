@@ -1,5 +1,5 @@
 from http import HTTPStatus
-from requests import requests
+from incoming import requests
 from http.client import HTTPConnection
 from http.server import BaseHTTPRequestHandler
 

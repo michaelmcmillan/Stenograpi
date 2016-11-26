@@ -1,8 +1,6 @@
 from queue import Empty
-from request import Request
-from requests import requests
 from threading import Thread
-from http_server import PythonHTTPServer
+from incoming import Request, requests, PythonHTTPServer
 
 class StenograpiServer:
 
