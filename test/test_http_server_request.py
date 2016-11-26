@@ -1,11 +1,11 @@
 from unittest import TestCase
-from server import StenograpiServer
+from stenograpi import Stenograpi
 from http.client import HTTPConnection
 
 class TestHTTPServerRequest(TestCase):
 
     def setUp(self):
-        self.server = StenograpiServer('localhost', 0, 0)
+        self.server = Stenograpi('localhost', 0, 0)
         self.server.listen()
 
     def tearDown(self):

@@ -2,7 +2,7 @@ from queue import Empty
 from threading import Thread
 from incoming import Request, requests, PythonHTTPServer
 
-class StenograpiServer:
+class Stenograpi:
 
     def __init__(self, host, port, app_port):
         self.server = PythonHTTPServer(host, port, app_port)

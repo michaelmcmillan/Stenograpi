@@ -1,6 +1,6 @@
 from mocks.app import App
 from unittest import TestCase
-from server import StenograpiServer
+from stenograpi import Stenograpi
 from http.client import HTTPConnection
 
 class TestProxy(TestCase):
@@ -8,7 +8,7 @@ class TestProxy(TestCase):
     def setUp(self):
         self.app = App('localhost', 0)
         self.app.listen()
-        self.server = StenograpiServer('localhost', 0, self.app.port)
+        self.server = Stenograpi('localhost', 0, self.app.port)
         self.server.listen()
 
     def tearDown(self):
