@@ -1,4 +1,4 @@
-from app import App
+from mocks.app import App
 from unittest import TestCase
 from server import StenograpiServer
 from http.client import HTTPConnection
