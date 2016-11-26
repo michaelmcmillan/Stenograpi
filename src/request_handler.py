@@ -29,4 +29,4 @@ class RequestHandler(BaseHTTPRequestHandler):
         if code == HTTPStatus.NOT_IMPLEMENTED:
             self.do_ALL()
         else:
-            super(RequestHandler, self).send_error(code, message, explain)
+            super().send_error(code, message, explain)
