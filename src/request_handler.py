@@ -15,7 +15,7 @@ class RequestHandler(BaseHTTPRequestHandler):
         self.remember_request()
 
         # Forward the request to app
-        client = HTTPConnection('localhost', 1338)
+        client = HTTPConnection('localhost', self.app_port)
         client.request(self.command, self.path)
         response = client.getresponse()
 
@@ -29,4 +29,4 @@ class RequestHandler(BaseHTTPRequestHandler):
         if code == HTTPStatus.NOT_IMPLEMENTED:
             self.do_ALL()
         else:
-            return super(RequestHandler, self).send_error(code, message, explain)
+            super(RequestHandler, self).send_error(code, message, explain)

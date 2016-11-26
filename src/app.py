@@ -29,6 +29,11 @@ class App:
         self.thread.daemon = True
         self.thread.start()
 
+    @property
+    def port(self):
+        port = self.server.socket.getsockname()[1]
+        return port
+
     def route(self, method, path, status, body):
         def response_func(request):
             request.send_response(status)

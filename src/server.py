@@ -6,13 +6,18 @@ from http_server import PythonHTTPServer
 
 class StenograpiServer:
 
-    def __init__(self, host, port):
-        self.server = PythonHTTPServer(host, port)
+    def __init__(self, host, port, app_port):
+        self.server = PythonHTTPServer(host, port, app_port)
         self.thread = Thread(target=self.server.serve_forever)
 
     def listen(self):
         self.thread.daemon = True
         self.thread.start()
+
+    @property
+    def port(self):
+        port = self.server.socket.getsockname()[1]
+        return port
 
     def shutdown(self):
         self.server.socket.close()
