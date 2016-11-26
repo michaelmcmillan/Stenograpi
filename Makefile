@@ -6,6 +6,7 @@ SYSTEM_VIRTUALENV=$(shell which virtualenv)
 # Project binaries
 PYLINT=$(ENV_DIR)/bin/pylint
 PYTHON=$(ENV_DIR)/bin/python3
+PYLINT=$(ENV_DIR)/bin/pylint
 PIP=$(ENV_DIR)/bin/pip3
 
 # Directories
@@ -18,6 +19,7 @@ ENV_DIR=$(LIB_DIR)/env
 TEST_FILES=test_*.py
 TEST_RUNNER=$(PYTHON) -m unittest
 REQUIREMENTS=$(LIB_DIR)/requirements.txt
+PYLINT_CONFIG=$(TEST_DIR)/pylint.rc
 MODULES=$(SRC_DIR):$(TEST_DIR)
 
 # Environment variables
@@ -26,6 +28,7 @@ export PYTHONDONTWRITEBYTECODE=true
 
 install: pip-install
 test: unit-test
+lint: pylint
 
 virtualenv-install:
 	$(SYSTEM_PIP) install virtualenv
@@ -37,4 +40,7 @@ pip-install: virtualenv-install
 unit-test:
 	@$(TEST_RUNNER) discover -s $(TEST_DIR) -p $(TEST_FILES)
 
-.PHONY: test install
+pylint:
+	@$(PYTHON) $(PYLINT) --rcfile $(PYLINT_CONFIG) $(SRC_DIR)/* $(TEST_DIR)
+
+.PHONY: install test lint

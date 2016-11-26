@@ -6,7 +6,10 @@ from http.server import BaseHTTPRequestHandler
 class RequestHandler(BaseHTTPRequestHandler):
 
     def remember_request(self):
-        requests.put({ 'path': self.path, 'method': self.command })
+        requests.put({
+            'path': self.path,
+            'method': self.command
+        })
 
     def do_ALL(self):
         self.remember_request()
@@ -24,6 +27,6 @@ class RequestHandler(BaseHTTPRequestHandler):
     def send_error(self, code, message=None, explain=None):
         # Intercept not implemented error to support all methods.
         if code == HTTPStatus.NOT_IMPLEMENTED:
-          self.do_ALL()
+            self.do_ALL()
         else:
-          return super(RequestHandler, self).send_error(code, message, explain)
+            return super(RequestHandler, self).send_error(code, message, explain)
