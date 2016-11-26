@@ -31,8 +31,7 @@ class App:
 
     @property
     def port(self):
-        port = self.server.socket.getsockname()[1]
-        return port
+        return self.server.socket.getsockname()[1]
 
     def route(self, method, path, status, body):
         def response_func(request):

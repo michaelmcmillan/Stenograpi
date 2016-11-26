@@ -14,8 +14,7 @@ class StenograpiServer:
 
     @property
     def port(self):
-        port = self.server.socket.getsockname()[1]
-        return port
+        return self.server.socket.getsockname()[1]
 
     def shutdown(self):
         self.server.socket.close()
