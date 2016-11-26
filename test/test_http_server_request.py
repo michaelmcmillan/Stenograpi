@@ -1,6 +1,6 @@
-from http.client import HTTPConnection
 from unittest import TestCase
 from server import StenograpiServer
+from http.client import HTTPConnection
 
 class TestHTTPServerRequest(TestCase):
 
