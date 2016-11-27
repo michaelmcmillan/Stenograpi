@@ -10,9 +10,10 @@ PIP=$(ENV_DIR)/bin/pip3
 COVERAGE_PY=$(ENV_DIR)/bin/coverage
 
 # Directories
+SRC_DIR=./src
 LIB_DIR=./lib
 TEST_DIR=./test
-SRC_DIR=./src
+DIST_DIR=./dist
 ENV_DIR=$(LIB_DIR)/env
 
 # Flags
@@ -21,14 +22,28 @@ REQUIREMENTS=$(LIB_DIR)/requirements.txt
 PYLINT_CONFIG=$(TEST_DIR)/pylint.rc
 MODULES=$(SRC_DIR):$(TEST_DIR)
 
+# Distribution
+SOURCE_FILES=$(shell find src -name "*.py")
+OUTFILE=$(DIST_DIR)/stenograpi.py
+IGNORE=grep -v 'from \.\|from incoming'
+
 # Environment variables
 export PYTHONPATH=$(MODULES)
 export PYTHONDONTWRITEBYTECODE=true
 
+distribute: combine-to-one-script
 install: pip-install
 test: unit-test
 lint: pylint
 coverage: coverage-py
+
+combine-to-one-script: $(SOURCE_FILES)
+	@cat $(SRC_DIR)/incoming/request_bucket.py  | $(IGNORE)  > $(OUTFILE)
+	@cat $(SRC_DIR)/incoming/request.py         | $(IGNORE) >> $(OUTFILE)
+	@cat $(SRC_DIR)/incoming/http_server.py     | $(IGNORE) >> $(OUTFILE)
+	@cat $(SRC_DIR)/incoming/request_handler.py | $(IGNORE) >> $(OUTFILE)
+	@cat $(SRC_DIR)/stenograpi.py               | $(IGNORE) >> $(OUTFILE)
+	@cat $(SRC_DIR)/main.py                     | $(IGNORE) >> $(OUTFILE)
 
 virtualenv-install:
 	$(SYSTEM_PIP) install virtualenv
