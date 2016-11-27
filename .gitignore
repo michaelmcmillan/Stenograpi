@@ -1,5 +1,4 @@
 lib/env
 .DS_Store
-idea
 *.svg
 .coverage
