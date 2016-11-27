@@ -13,6 +13,10 @@ class RequestHandler(BaseHTTPRequestHandler):
     def do_ALL(self):
         self.remember_request()
 
+        # Don't send a request if port is unspecified
+        if not self.app_port:
+            return
+
         # Forward the request to app
         client = HTTPConnection('localhost', self.app_port)
         client.request(self.command, self.path)
