@@ -3,6 +3,7 @@
 > Document your HTTP API automatically through tests.
 
 [![Build Status](https://travis-ci.org/michaelmcmillan/Stenograpi.svg?branch=master)](https://travis-ci.org/michaelmcmillan/Stenograpi)
+[![Coverage Status](https://coveralls.io/repos/github/michaelmcmillan/Stenograpi/badge.svg?branch=master)](https://coveralls.io/github/michaelmcmillan/Stenograpi?branch=master)
 
 Stop worrying about keeping your documentation in sync with your HTTP API. Simply proxy your integration tests through Stenograpi and receive documentation on the other end.
 
