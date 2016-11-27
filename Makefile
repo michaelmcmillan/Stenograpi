@@ -25,7 +25,7 @@ MODULES=$(SRC_DIR):$(TEST_DIR)
 # Distribution
 MAIN_FILE=$(SRC_DIR)/main.py
 OUTFILE=$(DIST_DIR)/stenograpi.py
-IGNORE_IMPORTS=grep -v 'from \.\|from incoming\|from stenograpi'
+IGNORE_IMPORTS=grep -v 'from \(\.\|incoming\|stenograpi\)'
 SOURCE_FILES=$(shell find src -name "*.py" -and -not -name "main.py")
 
 # Environment variables
