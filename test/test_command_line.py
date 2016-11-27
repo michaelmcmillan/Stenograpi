@@ -3,7 +3,6 @@ from unittest import TestCase
 from main import parse_args
 from io import StringIO
 
-
 class TestCommandLine(TestCase):
 
     @patch('sys.stderr', new_callable=StringIO)
