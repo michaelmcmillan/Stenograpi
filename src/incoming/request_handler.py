@@ -1,12 +1,11 @@
 from http import HTTPStatus
-from incoming import requests
 from http.client import HTTPConnection
 from http.server import BaseHTTPRequestHandler
 
 class RequestHandler(BaseHTTPRequestHandler):
 
     def remember_request(self):
-        requests.put({
+        self.bucket.add({
             'path': self.path,
             'method': self.command
         })
