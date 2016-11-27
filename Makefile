@@ -62,4 +62,4 @@ pylint:
 coverage-py:
 	@$(PYTHON) $(COVERAGE_PY) run --source=$(SRC_DIR) -m unittest discover -s $(TEST_DIR) -p $(TEST_FILES)
 
-.PHONY: install test lint
+.PHONY: distribute install test lint coverage
