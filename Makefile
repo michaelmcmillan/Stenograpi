@@ -25,8 +25,8 @@ MODULES=$(SRC_DIR):$(TEST_DIR)
 # Distribution
 MAIN_FILE=$(SRC_DIR)/main.py
 OUTFILE=$(DIST_DIR)/stenograpi.py
+IGNORE_IMPORTS=grep -v 'from \.\|from incoming\|from stenograpi'
 SOURCE_FILES=$(shell find src -name "*.py" -and -not -name "main.py")
-IGNORE=grep -v 'from \.\|from incoming\|from stenograpi'
 
 # Environment variables
 export PYTHONPATH=$(MODULES)
@@ -41,15 +41,15 @@ coverage: coverage-py
 
 combine-to-one-script: $(SOURCE_FILES)
 	-@[ -e $(OUTFILE) ] && rm $(OUTFILE);
-	@for SOURCE_FILE in $(SOURCE_FILES); do cat $$SOURCE_FILE | $(IGNORE) >> $(OUTFILE); done
-	@cat $(MAIN_FILE) | $(IGNORE) >> $(OUTFILE);
+	@for SOURCE_FILE in $(SOURCE_FILES); do cat $$SOURCE_FILE | $(IGNORE_IMPORTS) >> $(OUTFILE); done;
+	@cat $(MAIN_FILE) | $(IGNORE_IMPORTS) >> $(OUTFILE);
 
 virtualenv-install:
 	$(SYSTEM_PIP) install virtualenv
 	$(SYSTEM_VIRTUALENV) -p $(SYSTEM_PYTHON) --no-site-packages $(ENV_DIR)
 
 pip-install: virtualenv-install
-	@$(PIP) install -r $(REQUIREMENTS)
+	@$(PYTHON) $(PIP) install -r $(REQUIREMENTS)
 
 unit-test:
 	@$(PYTHON) -m unittest discover -s $(TEST_DIR) -p $(TEST_FILES)
