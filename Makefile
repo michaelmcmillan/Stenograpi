@@ -38,8 +38,8 @@ lint: pylint
 coverage: coverage-py
 
 combine-to-one-script: $(SOURCE_FILES)
-	-@rm $(OUTFILE)
-	for source_file in $(SOURCE_FILES) ; do \
+	-@[ -e $(OUTFILE) ] && rm $(OUTFILE);
+	@for source_file in $(SOURCE_FILES) ; do \
 		cat $$source_file  | $(IGNORE) >> $(OUTFILE) ; \
 	done;
 
