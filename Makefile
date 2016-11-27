@@ -23,8 +23,9 @@ PYLINT_CONFIG=$(TEST_DIR)/pylint.rc
 MODULES=$(SRC_DIR):$(TEST_DIR)
 
 # Distribution
-SOURCE_FILES=$(shell find src -name "*.py" -and -not -name "main.py")
+MAIN_FILE=$(SRC_DIR)/main.py
 OUTFILE=$(DIST_DIR)/stenograpi.py
+SOURCE_FILES=$(shell find src -name "*.py" -and -not -name "main.py")
 IGNORE=grep -v 'from \.\|from incoming\|from stenograpi'
 
 # Environment variables
@@ -43,7 +44,7 @@ combine-to-one-script: $(SOURCE_FILES)
 	@for source_file in $(SOURCE_FILES) ; do \
 		cat $$source_file  | $(IGNORE) >> $(OUTFILE) ; \
 	done;
-	@cat src/main.py | $(IGNORE) >> $(OUTFILE);
+	@cat $(MAIN_FILE) | $(IGNORE) >> $(OUTFILE);
 
 virtualenv-install:
 	$(SYSTEM_PIP) install virtualenv
