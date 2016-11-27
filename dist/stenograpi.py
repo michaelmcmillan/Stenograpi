@@ -1,3 +1,23 @@
+from http.server import HTTPServer
+from socketserver import ThreadingMixIn
+
+class PythonHTTPServer(ThreadingMixIn, HTTPServer):
+
+    def __init__(self, bucket, host, port, app_port):
+        RequestHandler.bucket = bucket
+        RequestHandler.app_port = app_port
+        super().__init__((host, port), RequestHandler)
+
+    def get_port(self):
+        return self.socket.getsockname()[1]
+
+    def close(self):
+        return self.socket.close()
+class Request:
+
+    def __init__(self):
+        self.path = None
+        self.method = None
 from queue import Queue, Empty
 
 class RequestBucket:
@@ -16,26 +36,6 @@ class RequestBucket:
             return self.bucket.get(block=True, timeout=0.010)
         except Empty:
             return None
-class Request:
-
-    def __init__(self):
-        self.path = None
-        self.method = None
-from http.server import HTTPServer
-from socketserver import ThreadingMixIn
-
-class PythonHTTPServer(ThreadingMixIn, HTTPServer):
-
-    def __init__(self, bucket, host, port, app_port):
-        RequestHandler.bucket = bucket
-        RequestHandler.app_port = app_port
-        super().__init__((host, port), RequestHandler)
-
-    def get_port(self):
-        return self.socket.getsockname()[1]
-
-    def close(self):
-        return self.socket.close()
 from http import HTTPStatus
 from http.client import HTTPConnection
 from http.server import BaseHTTPRequestHandler
@@ -67,6 +67,19 @@ class RequestHandler(BaseHTTPRequestHandler):
             self.do_ALL()
         else:
             super().send_error(code, message, explain)
+from argparse import ArgumentParser
+
+parser = ArgumentParser(prog='stenograpi.py',
+                        description='Document your HTTP API automatically through tests.')
+
+parser.add_argument('--hostname', type=str, help='hostname of Stenograpi')
+parser.add_argument('--port', type=int, help='port Stenograpi should listen on')
+
+parser.add_argument('--app-hostname', type=str, help='hostname of your app')
+parser.add_argument('--app-port', type=int, help='port your app is listening on')
+
+if __name__ == '__main__':
+    arguments = parser.parse_args()
 from threading import Thread
 
 class Stenograpi:
@@ -89,16 +102,3 @@ class Stenograpi:
 
     def get_latest_request(self):
         return self.bucket.get_latest_request()
-from argparse import ArgumentParser
-
-parser = ArgumentParser(prog='stenograpi.py',
-                        description='Document your HTTP API automatically through tests.')
-
-parser.add_argument('--hostname', type=str, help='hostname of Stenograpi')
-parser.add_argument('--port', type=int, help='port Stenograpi should listen on')
-
-parser.add_argument('--app-hostname', type=str, help='hostname of your app')
-parser.add_argument('--app-port', type=int, help='port your app is listening on')
-
-if __name__ == '__main__':
-    arguments = parser.parse_args()

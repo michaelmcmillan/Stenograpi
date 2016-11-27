@@ -38,12 +38,10 @@ lint: pylint
 coverage: coverage-py
 
 combine-to-one-script: $(SOURCE_FILES)
-	@cat $(SRC_DIR)/incoming/request_bucket.py  | $(IGNORE)  > $(OUTFILE)
-	@cat $(SRC_DIR)/incoming/request.py         | $(IGNORE) >> $(OUTFILE)
-	@cat $(SRC_DIR)/incoming/http_server.py     | $(IGNORE) >> $(OUTFILE)
-	@cat $(SRC_DIR)/incoming/request_handler.py | $(IGNORE) >> $(OUTFILE)
-	@cat $(SRC_DIR)/stenograpi.py               | $(IGNORE) >> $(OUTFILE)
-	@cat $(SRC_DIR)/main.py                     | $(IGNORE) >> $(OUTFILE)
+	-@rm $(OUTFILE)
+	for source_file in $(SOURCE_FILES) ; do \
+		cat $$source_file  | $(IGNORE) >> $(OUTFILE) ; \
+	done;
 
 virtualenv-install:
 	$(SYSTEM_PIP) install virtualenv
