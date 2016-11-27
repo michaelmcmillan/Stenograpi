@@ -10,9 +10,6 @@ class RequestHandler(BaseHTTPRequestHandler):
             'method': self.command
         })
 
-    def log_message(self, *args):
-        return
-
     def do_ALL(self):
         self.remember_request()
 
@@ -31,8 +28,11 @@ class RequestHandler(BaseHTTPRequestHandler):
         self.wfile.write(response.read())
 
     def send_error(self, code, message=None, explain=None):
-        # Intercept not implemented error to support all methods.
+        # Intercept not implemented error to support all methods
         if code == HTTPStatus.NOT_IMPLEMENTED:
             self.do_ALL()
         else:
             super().send_error(code, message, explain)
+
+    def log_message(self, *args):
+        return
