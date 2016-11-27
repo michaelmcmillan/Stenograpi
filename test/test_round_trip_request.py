@@ -6,9 +6,9 @@ from http.client import HTTPConnection
 class TestProxy(TestCase):
 
     def setUp(self):
-        self.app = App('localhost', 0)
+        self.app = App('localhost', port=0)
         self.app.listen()
-        self.server = Stenograpi('localhost', 0, self.app.port)
+        self.server = Stenograpi('localhost', port=0, app_port=self.app.port)
         self.server.listen()
 
     def tearDown(self):

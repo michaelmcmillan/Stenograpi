@@ -5,7 +5,7 @@ from http.client import HTTPConnection
 class TestHTTPServerRequest(TestCase):
 
     def setUp(self):
-        self.server = Stenograpi('localhost', 0, 0)
+        self.server = Stenograpi('localhost', port=0, app_port=0)
         self.server.listen()
 
     def tearDown(self):
