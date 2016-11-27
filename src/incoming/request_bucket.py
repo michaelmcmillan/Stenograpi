@@ -14,6 +14,6 @@ class RequestBucket:
 
     def get_latest_request(self):
         try:
-            return self.bucket.get(block=True, timeout=0.010)
+            return self.bucket.get(block=True, timeout=15)
         except Empty:
             return None

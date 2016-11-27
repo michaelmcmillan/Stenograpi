@@ -48,9 +48,6 @@ class RequestHandler(BaseHTTPRequestHandler):
             'method': self.command
         })
 
-    def log_message(self, *args):
-        return
-
     def do_ALL(self):
         self.remember_request()
 
@@ -69,11 +66,15 @@ class RequestHandler(BaseHTTPRequestHandler):
         self.wfile.write(response.read())
 
     def send_error(self, code, message=None, explain=None):
-        # Intercept not implemented error to support all methods.
+        # Intercept not implemented error to support all methods
         if code == HTTPStatus.NOT_IMPLEMENTED:
             self.do_ALL()
         else:
             super().send_error(code, message, explain)
+
+    def log_message(self, *args):
+        return
+from stenograpi import Stenograpi
 from argparse import ArgumentParser
 
 parser = ArgumentParser(prog='stenograpi.py',
@@ -86,7 +87,8 @@ parser.add_argument('--app-hostname', type=str, help='hostname of your app')
 parser.add_argument('--app-port', type=int, help='port your app is listening on')
 
 if __name__ == '__main__':
-    arguments = parser.parse_args()
+    args = parser.parse_args()
+    stenograpi = Stenograpi(args.hostname, args.port, args.app_port)
 from threading import Thread
 
 class Stenograpi:
