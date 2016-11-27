@@ -14,6 +14,9 @@ class AppHandler(server.BaseHTTPRequestHandler):
         else:
             return super().send_error(code, message, explain)
 
+    def log_message(self, *args):
+        return
+
 class AppHTTPServer(ThreadingMixIn, server.HTTPServer):
     pass
 

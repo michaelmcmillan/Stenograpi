@@ -48,6 +48,9 @@ class RequestHandler(BaseHTTPRequestHandler):
             'method': self.command
         })
 
+    def log_message(self, *args):
+        return
+
     def do_ALL(self):
         self.remember_request()
 

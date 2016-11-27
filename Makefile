@@ -29,6 +29,7 @@ IGNORE=grep -v 'from \.\|from incoming'
 
 # Environment variables
 export PYTHONPATH=$(MODULES)
+export PYTHONWARNINGS=ignore
 export PYTHONDONTWRITEBYTECODE=true
 
 distribute: combine-to-one-script
