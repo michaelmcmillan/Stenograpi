@@ -4,7 +4,6 @@ SYSTEM_PYTHON=$(shell which python3)
 SYSTEM_VIRTUALENV=$(shell which virtualenv)
 
 # Project binaries
-PYLINT=$(ENV_DIR)/bin/pylint
 PYTHON=$(ENV_DIR)/bin/python3
 PYLINT=$(ENV_DIR)/bin/pylint
 PIP=$(ENV_DIR)/bin/pip3
