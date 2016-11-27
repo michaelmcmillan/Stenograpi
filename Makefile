@@ -41,7 +41,7 @@ coverage: coverage-py
 
 combine-to-one-script: $(SOURCE_FILES)
 	-@[ -e $(OUTFILE) ] && rm $(OUTFILE);
-	@for source_file in $(SOURCE_FILES); do cat $$source_file  | $(IGNORE) >> $(OUTFILE); done
+	@for SOURCE_FILE in $(SOURCE_FILES); do cat $$SOURCE_FILE | $(IGNORE) >> $(OUTFILE); done
 	@cat $(MAIN_FILE) | $(IGNORE) >> $(OUTFILE);
 
 virtualenv-install:
