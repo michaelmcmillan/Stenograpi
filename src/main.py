@@ -1,5 +1,4 @@
 from argparse import ArgumentParser
-from . import Stenograpi
 
 parser = ArgumentParser(prog='stenograpi.py',
                         description='Document your HTTP API automatically through tests.')
@@ -12,6 +11,3 @@ parser.add_argument('--app-port', type=int, help='port your app is listening on'
 
 if __name__ == '__main__':
     arguments = parser.parse_args()
-    stenograpi = Stenograpi(arguments.hostname, arguments.port, arguments.app_port)
-    stenograpi.listen()
-    stenograpi.get_latest_request()
