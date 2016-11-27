@@ -11,7 +11,7 @@ Stop worrying about keeping your documentation in sync with your HTTP API. Simpl
 Stenograpi is a standalone Python script that has no external dependencies. Simply run the following command to retrieve the script.
 
 ````
-wget https://github.com/michaelmcmillan/Stenograpi/blob/master/dist/stenograpi.py
+wget https://raw.githubusercontent.com/michaelmcmillan/Stenograpi/master/dist/stenograpi.py
 ````
 
 ## Usage
