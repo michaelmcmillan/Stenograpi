@@ -23,3 +23,11 @@ python3 stenograpi.py --hostname localhost --port 1337 --app-hostname localhost 
 ````
 
 In your integrated tests, replace the hostname and port of the application you are testing with Stepograpi's hostname and port.
+
+## Mechanics
+
+Stenograpi steps in between your tests and your application. However, neither your tests nor your application will notice any difference. 
+
+![Request flow](docs/img/flow.svg)
+
+While the requests and responses are delivered as usual, Stenograpi will create Markdown documents describing the exchange. The documents are written with developers in mind.
