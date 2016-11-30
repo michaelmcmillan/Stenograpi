@@ -3,11 +3,17 @@ from os import path, environ
 from unittest import TestCase
 from subprocess import check_output, TimeoutExpired
 
-def get_markdown(filename):
-    return open(filename).read()
+def file_exists(path_to_file):
+    return path.isfile(path_to_file)
+
+def get_markdown(path_to_file):
+    return open(path_to_file).read()
 
 def find_code_blocks_in_markdown(markdown):
     return findall(r"\`{4}\n([a-z]*[\s\S]*?)\n\`{4}", markdown)
+
+def find_links_in_markdown(markdown):
+    return dict(findall(r"\[(.*)\]\((.*)\)", markdown))
 
 class TestReadme(TestCase):
 
@@ -27,3 +33,9 @@ class TestReadme(TestCase):
         run_command = code_blocks[1].replace('stenograpi.py', 'dist/stenograpi.py')
         with self.assertRaisesRegex(TimeoutExpired, 'timed out'):
             check_output(run_command, shell=True, timeout=0.250)
+
+    def test_link_to_example_output_is_not_broken(self):
+        links = find_links_in_markdown(self.readme_markdown)
+        output_example_target = links['see for yourself']
+        output_example_location = path.join(environ['PWD'], output_example_target)
+        self.assertTrue(file_exists(output_example_location))
