@@ -30,4 +30,5 @@ Stenograpi steps in between your tests and your application. However, neither yo
 
 ![Request flow](docs/img/flow.png)
 
-While the requests and responses are delivered as usual, Stenograpi will create Markdown documents describing the exchange. The documents are written with developers in mind.
+While the requests and responses are delivered as usual, Stenograpi will create Markdown documents describing the exchange. The documents are written with developers in mind,
+[see for yourself](docs/examples/output.md).
