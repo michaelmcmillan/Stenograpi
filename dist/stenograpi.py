@@ -1,5 +1,6 @@
 from http.server import HTTPServer
 from socketserver import ThreadingMixIn
+from request_handler import RequestHandler
 
 class PythonHTTPServer(ThreadingMixIn, HTTPServer):
 
@@ -18,6 +19,7 @@ class Request:
     def __init__(self):
         self.path = None
         self.method = None
+from request import Request
 from queue import Queue, Empty
 
 class RequestBucket:
@@ -75,6 +77,8 @@ class RequestHandler(BaseHTTPRequestHandler):
     def log_message(self, *args):
         return
 from threading import Thread
+from http_server import PythonHTTPServer
+from request_bucket import RequestBucket
 
 class Stenograpi:
 

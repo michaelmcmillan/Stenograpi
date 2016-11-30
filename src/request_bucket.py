@@ -1,4 +1,4 @@
-from incoming import Request
+from request import Request
 from queue import Queue, Empty
 
 class RequestBucket:

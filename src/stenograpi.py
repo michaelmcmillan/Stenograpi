@@ -1,5 +1,6 @@
 from threading import Thread
-from incoming import PythonHTTPServer, RequestBucket
+from http_server import PythonHTTPServer
+from request_bucket import RequestBucket
 
 class Stenograpi:
 

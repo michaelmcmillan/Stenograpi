@@ -1,6 +1,6 @@
 from http.server import HTTPServer
 from socketserver import ThreadingMixIn
-from incoming.request_handler import RequestHandler
+from request_handler import RequestHandler
 
 class PythonHTTPServer(ThreadingMixIn, HTTPServer):
 
