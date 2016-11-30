@@ -8,14 +8,19 @@ class AppHandler(server.BaseHTTPRequestHandler):
         App.routes[(self.command, self.path)](self)
 
     def send_error(self, code, message=None, explain=None):
-        # Intercept not implemented error to support all methods.
         if code == HTTPStatus.NOT_IMPLEMENTED:
             self.do_ALL()
         else:
             return super().send_error(code, message, explain)
 
-    def log_message(self, *args):
+    def log_message(self, *args, **kwargs):
         return
+
+    def send_header(self, *args, **kwargs):
+        key, value = args
+        if key == 'Server' and 'BaseHTTP' in value:
+            return
+        super().send_header(*args, **kwargs)
 
 class AppHTTPServer(ThreadingMixIn, server.HTTPServer):
     pass
@@ -36,9 +41,12 @@ class App:
     def port(self):
         return self.server.socket.getsockname()[1]
 
-    def route(self, method, path, status, body):
+    def route(self, method='GET', path='/', status=200, body=b'', headers=None):
         def response_func(request):
             request.send_response(status)
+            if headers:
+                for key, value in headers.items():
+                    request.send_header(key, value)
             request.end_headers()
             request.wfile.write(body)
         App.routes[(method, path)] = response_func
