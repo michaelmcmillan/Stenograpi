@@ -5,6 +5,7 @@
 [![Build Status](https://img.shields.io/travis/michaelmcmillan/Stenograpi/master.svg?label=linux%20tests)](https://travis-ci.org/michaelmcmillan/Stenograpi)
 [![Build status](https://img.shields.io/appveyor/ci/michaelmcmillan/stenograpi/master.svg?label=windows%20tests)](https://ci.appveyor.com/project/michaelmcmillan/stenograpi/branch/master)
 [![Coverage Status](https://img.shields.io/coveralls/michaelmcmillan/Stenograpi/master.svg?label=test%20coverage)](https://coveralls.io/github/michaelmcmillan/Stenograpi?branch=master)
+[![Coverage Status](https://img.shields.io/codeclimate/github/michaelmcmillan/Stenograpi.svg?)](https://codeclimate.com/github/michaelmcmillan/Stenograpi)
 
 Stop worrying about keeping your documentation in sync with your HTTP API. Simply proxy your integration tests through Stenograpi and receive documentation on the other end.
 
