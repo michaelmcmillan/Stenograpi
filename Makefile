@@ -33,7 +33,7 @@ export PYTHONPATH=$(MODULES)
 export PYTHONWARNINGS=ignore
 export PYTHONDONTWRITEBYTECODE=true
 
-distribute: combine-to-one-script
+dist: combine-to-one-script
 install: pip-install
 test: unit-test
 lint: pylint
@@ -60,4 +60,4 @@ pylint:
 coverage-py:
 	@$(PYTHON) $(COVERAGE_PY) run --source=$(SRC_DIR) -m unittest discover -s $(TEST_DIR) -p $(TEST_FILES)
 
-.PHONY: distribute install test lint coverage
+.PHONY: dist install test lint coverage
