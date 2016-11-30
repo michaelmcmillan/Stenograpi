@@ -2,9 +2,9 @@
 
 > Document your HTTP API automatically through tests.
 
-[![Build Status](https://travis-ci.org/michaelmcmillan/Stenograpi.svg?branch=master)](https://travis-ci.org/michaelmcmillan/Stenograpi)
-[![Build status](https://ci.appveyor.com/api/projects/status/52d995vnk5l98ron/branch/master?svg=true)](https://ci.appveyor.com/project/michaelmcmillan/stenograpi/branch/master)
-[![Coverage Status](https://coveralls.io/repos/github/michaelmcmillan/Stenograpi/badge.svg?branch=master)](https://coveralls.io/github/michaelmcmillan/Stenograpi?branch=master)
+[![Build Status](https://img.shields.io/travis/michaelmcmillan/Stenograpi/master.svg?label=linux%20tests)](https://travis-ci.org/michaelmcmillan/Stenograpi)
+[![Build status](https://img.shields.io/appveyor/ci/michaelmcmillan/stenograpi/master.svg?label=windows%20tests)](https://ci.appveyor.com/project/michaelmcmillan/stenograpi/branch/master)
+[![Coverage Status](https://img.shields.io/coveralls/michaelmcmillan/Stenograpi/master.svg?label=test%20coverage)](https://coveralls.io/github/michaelmcmillan/Stenograpi?branch=master)
 
 Stop worrying about keeping your documentation in sync with your HTTP API. Simply proxy your integration tests through Stenograpi and receive documentation on the other end.
 
