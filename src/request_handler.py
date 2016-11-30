@@ -28,7 +28,10 @@ class RequestHandler(BaseHTTPRequestHandler):
         self.wfile.write(response.read())
 
     def send_error(self, code, message=None, explain=None):
-        # Intercept not implemented error to support all methods
+        # This error will always occur upon receiving a request. To
+        # support all HTTP verbs we ironically avoid any "DO_VERB"
+        # methods in this class to trigger this error. We proceed
+        # by calling our "catch-all" handler called "DO_ALL".
         if code == HTTPStatus.NOT_IMPLEMENTED:
             self.do_ALL()
         else:
