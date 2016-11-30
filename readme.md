@@ -28,6 +28,6 @@ In your integrated tests, replace the hostname and port of the application you a
 
 Stenograpi steps in between your tests and your application. However, neither your tests nor your application will notice any difference. 
 
-![Request flow](docs/img/flow.svg)
+![Request flow](docs/img/flow.png)
 
 While the requests and responses are delivered as usual, Stenograpi will create Markdown documents describing the exchange. The documents are written with developers in mind.
